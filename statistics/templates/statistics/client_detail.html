@@ -1,0 +1,34 @@
+{% extends 'statistics/base.html' %}
+{% block title %}detail{% endblock %}
+{% block pagename %}{{client}} detail{% endblock pagename%}
+{% block content %}
+<div class="results">
+    <table id='result_list'>
+        <thead>
+            <th scope="col"  class="sortable"><div class="text">sdate</div></th>
+            <th scope="col"  class="sortable"><div class="text">sms succ</div></th>
+            <th scope="col"  class="sortable"><div class="text">sms fail</div></th>
+            <th scope="col"  class="sortable"><div class="text">lms succ</div></th>
+            <th scope="col"  class="sortable"><div class="text">lms fail</div></th>
+        </thead>
+        <tbody>
+            {% for statistics in statistics_list %}
+                <tr class="row1">
+                    <td class="field-email" style="text-align: right;">{{statistics}}</td>
+                    <td class="field-email" style="text-align: right;">{{statistics.SS}}</td>
+                    <td class="field-email" style="text-align: right;">{{statistics.SF}}</td>
+                    <td class="field-email" style="text-align: right;">{{statistics.LS}}</td>
+                    <td class="field-email" style="text-align: right;">{{statistics.LF}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="font-size:9pt;">
+        {% for page in pages %}
+            <a href="?page={{page}}"><span>{{ page }}</span></a>
+        {% endfor %}
+    </div>
+</div>
+
+<!--<span>{{ statistics.result }}</span>-->
+{% endblock content %}

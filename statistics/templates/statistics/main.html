@@ -1,0 +1,34 @@
+{% extends 'statistics/base.html' %}
+{% block title %}clients{% endblock title %}
+{% block content %}
+<div class="results">
+    <table id='result_list'>
+        <thead>
+            <th scope="col"  class="sortable"><div class="text">no</div></th>
+            <th scope="col"  class="sortable"><div class="text">name</div></th>
+            <th scope="col"  class="sortable"><div class="text">allow ip</div></th>
+            <th scope="col"  class="sortable"><div class="text">register date</div></th>
+            <th scope="col"  class="sortable"><div class="text">status</div></th>
+            <th scope="col"  class="sortable"><div class="text">sms succ</div></th>
+            <th scope="col"  class="sortable"><div class="text">sms fail</div></th>
+            <th scope="col"  class="sortable"><div class="text">lms succ</div></th>
+            <th scope="col"  class="sortable"><div class="text">lms fail</div></th>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+                <tr class="row1">
+                    <td class="action-checkbox">{{ client.no }}</td>
+                    <th class="field-username"><a href="{% url 'client_detail' NO=client.no %}">{{ client.name }}</a></th>
+                    <td class="field-email">{% for ip in client.allow %}{{ip}}<br>{% endfor %}</td>
+                    <td class="field-email">{{client.reg_date}}</td>
+                    <td class="field-email">{{client.status}}</td>
+                    <td class="field-email" style="text-align: right;">{{client.SS}}</td>
+                    <td class="field-email" style="text-align: right;">{{client.SF}}</td>
+                    <td class="field-email" style="text-align: right;">{{client.LS}}</td>
+                    <td class="field-email" style="text-align: right;">{{client.LF}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>coreintec sms | {% block title %}{% endblock %}</title>
+        <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'/>
+        <link rel="stylesheet" href="{% static 'admin/css/base.css' %}"/>
+        <meta name="robots" content="NONE,NOARCHIVE" />
+    </head>
+    <body class="dashboard" data-admin-utc-offset="0">
+    {% if user.is_authenticated %}
+        <!-- Container -->
+        <div class="container">
+            <!-- Header -->
+            <div id="header">
+                <div id="branding">
+                    <h1 id="site-name"><a href="{% url 'statistics.views.main' %}" style="font-family: 'Poiret One', cursive;">Coreintec SMS server statistics</a></h1>
+                </div>
+                <div id="user-tools">
+                    Welcome,<strong>{{ user.username }}</strong>
+                    / <a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
+                    
+                </div>
+            </div>
+            <!-- END Header -->
+            <div class="breadcrumbs">
+                <a href="{% url 'statistics.views.main' %}">Home</a>
+            </div>
+            <!-- Content -->
+            <div id="content" class="colMS">
+                <h1>{% block pagename %}{%endblock%}</h1>
+                <div id="content-main">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+            <!-- END Content -->
+        </div>
+        <!-- END Container -->
+    {% else %}
+        <script>window.location = '/accounts/login';</script>
+    {% endif %}
+    </body>
+</html>
